@@ -2,4 +2,4 @@
 
 ## Requirements
 
-Git, Maven, OpenJDK 11
+Git, Maven, OpenJDK 19
