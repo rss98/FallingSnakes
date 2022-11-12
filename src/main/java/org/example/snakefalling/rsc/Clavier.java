@@ -25,6 +25,7 @@ public class Clavier implements KeyListener {
                 Main.scene.tir.setyPos(Constantes.Y_POSITION_VAISSEAU - Constantes.HAUTEUR_TIR);
                 Main.scene.tir.setxPos(Main.scene.vaisseau.getxPos() + Constantes.LARGEUR_VAISSEAU / 2 - 1);
                 Main.scene.tir.setVaisseauTir(true);
+
             }
         }
     }

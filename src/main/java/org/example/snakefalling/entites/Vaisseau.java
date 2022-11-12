@@ -24,9 +24,14 @@ public class Vaisseau extends Entite {
             }
         } else {
             if (dx > 0) {
-                if (this.xPos + this.dx < Constantes.LIMITE_DROITE) {
-                    this.xPos = this.xPos + this.dx;
-                }
+
+                //148 c est la largeur du vaisseau
+                //Objectif: Le vaisseau doit rester dans le cardre
+                if (this.xPos <= Constantes.LIMITE_DROITE - 160)
+
+                    if (this.xPos + this.dx < Constantes.LIMITE_DROITE) {
+                        this.xPos = this.xPos + this.dx;
+                    }
             }
         }
         return this.xPos;

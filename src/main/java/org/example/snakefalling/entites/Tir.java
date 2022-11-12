@@ -4,6 +4,7 @@ import org.example.snakefalling.rsc.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Tir extends Entite {
 
@@ -32,7 +33,7 @@ public class Tir extends Entite {
     }
 
     public int deplacementTir() {
-        if (this.vaisseauTir == true) {
+        if (this.vaisseauTir) {
             if (this.yPos > 0) {
                 this.yPos = this.yPos - Constantes.DY_TIR;
             } else {
@@ -42,10 +43,71 @@ public class Tir extends Entite {
         return yPos;
     }
 
-    public void dessinTir(Graphics g) {
-        if (this.vaisseauTir == true) {
-            g.drawImage(this.image, this.xPos, this.deplacementTir(), null);
+    public void dessinTir(Graphics g, Serpent s) {
+        if (this.vaisseauTir) {
+
+
+            diminuerTailleSerpent(g, s);
+
+
+            //+50 : centrer le tir au niveau du vaisseau
+            g.drawImage(this.image, this.xPos + 50, this.deplacementTir(), null);
         }
+    }
+
+    public void diminuerTailleSerpent(Graphics g, Serpent s) {
+
+
+        if (this.getxPos() == s.getTeteSerpent().getxPos() && this.getyPos() == s.getTeteSerpent().getyPos()) {
+
+            gameOver(g);
+
+        } else {
+
+            if (s.getElementsCorpsSerpent().isEmpty()) {
+
+
+            } else {
+
+                //Java 8 stream
+                // Java 8 method reference
+
+                s.getElementsCorpsSerpent().stream()
+                        .filter(c -> this.getxPos() == c.getxPos() && this.getyPos() == c.getyPos())
+                        .forEach(c -> {
+                            s.effacer(c.getxPos(), c.getyPos(), g);
+                        });
+
+                s.getElementsCorpsSerpent().stream()
+                        .filter(c -> this.getxPos() == c.getxPos() && this.getyPos() == c.getyPos())
+                        .forEach(new ArrayList<Cercle>()::remove);
+
+
+            }
+
+        }
+
+
+    }
+
+    private void gameOver(Graphics g) {
+        String message = "You Win";
+        Font small = new Font("Helvetice", Font.BOLD, 15);
+        //FontMetrics met = getFontMetrics(small);
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(message, (Constantes.LARGEUR_FENETRE - stringWidth(message)) / 2, Constantes.HAUTEUR_FENETRE / 2);
+    }
+
+    private int stringWidth(String str) {
+        int len = str.length();
+        char[] data = new char[len];
+        str.getChars(0, len, data, 0);
+        return charsWidth(data, 0, len);
+    }
+
+    private int charsWidth(char[] data, int off, int len) {
+        return stringWidth(new String(data, off, len));
     }
 
 

@@ -2,15 +2,15 @@ package org.example.snakefalling.rsc;
 
 public abstract class Constantes {
     // Dimensions de la fenetre
-    public static final int LARGEUR_FENETRE = 600;
+    public static final int LARGEUR_FENETRE = 1200;//600
     public static final int HAUTEUR_FENETRE = 600;
     public static final int MARGE_FENETRE = 50;
 
     // Dimensions Vaisseau
     public static final int LARGEUR_VAISSEAU = 39;
     public static final int HAUTEUR_VAISSEAU = 24;
-    public static final int LIMITE_GAUCHE = 50;
-    public static final int LIMITE_DROITE = 400;
+    public static final int LIMITE_GAUCHE = 0;
+    public static final int LIMITE_DROITE = Constantes.LARGEUR_FENETRE;
 
 
     // Position Vaisseau
